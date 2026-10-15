@@ -10,15 +10,28 @@ function showMessage(text, type = "") {
   message.textContent = text;
   message.className = `message ${type}`;
 }
+
 async function request(path, options = {}) {
-  const response = await fetch(`${API_BASE_URL}${path}`, {
+  const url = `${API_BASE_URL}${path}`;
+  console.log("Fetching:", url);
+
+  const response = await fetch(url, {
     ...options,
-    headers: { "Content-Type": "application/json", ...(options.headers || {}) }
+    headers: {
+      ...(options.body ? { "Content-Type": "application/json" } : {}),
+      ...(options.headers || {})
+    }
   });
+
   const result = await response.json().catch(() => ({}));
-  if (!response.ok) throw new Error(result.message || `Request failed (${response.status})`);
+
+  if (!response.ok) {
+    throw new Error(result.message || `Request failed (${response.status})`);
+  }
+
   return result;
 }
+
 async function checkAPI() {
   const status = document.getElementById("apiStatus");
   try {
