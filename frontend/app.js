@@ -1,5 +1,5 @@
 // Change this to the deployed Render API URL when you deploy.
-const API_BASE_URL = "http://localhost:5000";
+const API_BASE_URL = "https://student-management-system-k54x.onrender.com";
 const form = document.getElementById("studentForm");
 const rows = document.getElementById("studentRows");
 const message = document.getElementById("message");
