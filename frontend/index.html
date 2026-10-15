@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Management System</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="hero">
+    <div class="hero-inner">
+      <p class="eyebrow">THREE-TIER CLOUD APPLICATION</p>
+      <h1>Student Management System</h1>
+      <p>Add, search, update and manage student records in one place.</p>
+      <div id="apiStatus" class="status">Checking API connection…</div>
+    </div>
+  </header>
+  <main class="container">
+    <section class="panel">
+      <div class="section-heading">
+        <div><p class="eyebrow">STUDENT DETAILS</p><h2 id="formTitle">Add a student</h2></div>
+        <button id="cancelEdit" class="button secondary hidden" type="button">Cancel edit</button>
+      </div>
+      <form id="studentForm">
+        <input id="editId" type="hidden">
+        <div class="form-grid">
+          <label>Student ID *<input id="studentId" required placeholder="ST101" maxlength="30"></label>
+          <label>Full name *<input id="name" required placeholder="Aarav Sharma" maxlength="100"></label>
+          <label>Email *<input id="email" type="email" required placeholder="aarav@example.com"></label>
+          <label>Department *<input id="department" required placeholder="Computer Science"></label>
+          <label>Semester *<input id="semester" type="number" min="1" max="12" required placeholder="5"></label>
+          <label>Contact number<input id="contact" type="tel" placeholder="Optional"></label>
+        </div>
+        <button class="button primary" id="submitButton" type="submit">Add student</button>
+      </form>
+      <p id="message" role="status" class="message" aria-live="polite"></p>
+    </section>
+
+    <section class="panel">
+      <div class="section-heading list-heading">
+        <div><p class="eyebrow">RECORDS</p><h2>Student directory</h2></div>
+        <button class="button secondary" id="refreshButton" type="button">Refresh</button>
+      </div>
+      <label class="search-label">Search records<input id="search" type="search" placeholder="Search by ID, name, email or department"></label>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Student ID</th><th>Name</th><th>Email</th><th>Department</th><th>Semester</th><th>Contact</th><th>Actions</th></tr></thead>
+          <tbody id="studentRows"><tr><td colspan="7" class="empty">Loading records…</td></tr></tbody>
+        </table>
+      </div>
+      <p id="count" class="count"></p>
+    </section>
+    <footer>Frontend: Netlify · API: Render · Database: MongoDB Atlas</footer>
+  </main>
+  <script src="app.js"></script>
+</body>
+</html>
